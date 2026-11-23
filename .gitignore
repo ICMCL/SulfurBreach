@@ -1,6 +1,5 @@
-# Generated archives, previews, and Python caches
+# Generated archives and Python caches
 /dist/
-/previews/
 *.zip
 __pycache__/
 *.py[cod]
