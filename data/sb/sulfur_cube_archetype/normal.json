@@ -1,0 +1,46 @@
+{
+  "items": "minecraft:iron_block",
+  "buoyant": true,
+  "attribute_modifiers": [
+    {
+      "attribute": "minecraft:knockback_resistance",
+      "id": "sb:normal_kb_res",
+      "amount": 1.0,
+      "operation": "add_value"
+    },
+    {
+      "attribute": "minecraft:explosion_knockback_resistance",
+      "id": "sb:normal_exp_kb_res",
+      "amount": 1.0,
+      "operation": "add_value"
+    },
+    {
+      "attribute": "minecraft:bounciness",
+      "id": "sb:normal_bounciness",
+      "amount": 0.95,
+      "operation": "add_value"
+    },
+    {
+      "attribute": "minecraft:friction_modifier",
+      "id": "sb:normal_friction",
+      "amount": -0.92,
+      "operation": "add_multiplied_total"
+    },
+    {
+      "attribute": "minecraft:air_drag_modifier",
+      "id": "sb:normal_air_drag",
+      "amount": -0.98,
+      "operation": "add_multiplied_total"
+    }
+  ],
+  "knockback_modifiers": {
+    "horizontal_power": 0.0,
+    "vertical_power": 0.0
+  },
+  "sound_settings": {
+    "hit_sound": "minecraft:entity.sulfur_cube.slow_flat.hit",
+    "push_sound": "minecraft:entity.sulfur_cube.slow_flat.push",
+    "push_sound_cooldown": 0.25,
+    "push_sound_impulse_threshold": 0.05
+  }
+}

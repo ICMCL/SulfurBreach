@@ -1,0 +1,16 @@
+# Generated archives, previews, and Python caches
+/dist/
+/previews/
+*.zip
+__pycache__/
+*.py[cod]
+.venv/
+.DS_Store
+
+# Local validation output
+/tests/evidence/
+
+# Runtime player/session files if opened directly
+/world/players/
+/world/session.lock
+/logs/

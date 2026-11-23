@@ -1,0 +1,44 @@
+{
+  "slug": "sulfur-breach",
+  "namespace": "sb",
+  "title": "硫方破壁 · 晴空海岸竞技岛",
+  "description": "双队分边守墙 × 5 格共享中立区争球 × 长矛物理弹射破城对抗（Minecraft Java 26.3）",
+  "biome": "minecraft:warm_ocean",
+  "spawn": {
+    "pos": [0, 70, -15],
+    "yaw": 0.0,
+    "pitch": 18.0
+  },
+  "build_script": "tools/generate_stadium.py",
+  "preview_shots": [
+    {
+      "file": "preview_overview.png",
+      "cam": [-36.0, 95.0, 33.0],
+      "look_at": [0.0, 66.0, -3.0],
+      "fov": 45.0,
+      "title": "硫方破壁 · 晴空海岸露天竞技岛（全景鸟瞰）",
+      "subtitle": "直接读取 26.3 存档 .mca 区块渲染 · 浮空珊瑚礁岛 · 四角椰林 · 东西守城门楼"
+    },
+    {
+      "file": "preview_court.png",
+      "cam": [0.5, 79.5, -16.5],
+      "look_at": [0.5, 64.8, 2.0],
+      "fov": 56.0,
+      "title": "露天球场俯瞰视角（无玻璃顶遮挡）",
+      "subtitle": "中央 5 格 26.3 磨制硫磺中立区 · 两侧 19 列红蓝守护墙 & 海晶石底线槽 · 南侧遮阳看台"
+    },
+    {
+      "file": "preview_lobby.png",
+      "cam": [0.5, 78.5, -5.5],
+      "look_at": [0.5, 70.5, -18.5],
+      "fov": 54.0,
+      "title": "北侧海滨拱廊大厅 & 红蓝沙滩选队亭",
+      "subtitle": "竹木观景步道直通赛场 · 红蓝条纹海滨选队亭 · 讲台规则菜单与开始按钮"
+    }
+  ],
+  "extra_preview_voxels": [
+    { "pos": [0, 65, 0], "block": "minecraft:polished_sulfur" },
+    { "pos": [-6, 65, 2], "block": "minecraft:iron_block" },
+    { "pos": [6, 65, -2], "block": "minecraft:magma_block" }
+  ]
+}

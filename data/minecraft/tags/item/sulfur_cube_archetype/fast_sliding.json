@@ -1,0 +1,7 @@
+{
+  "replace": true,
+  "values": [
+    "minecraft:packed_ice",
+    "minecraft:snow_block"
+  ]
+}

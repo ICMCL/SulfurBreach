@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:iron_block",
+    "minecraft:magma_block",
+    "minecraft:tuff",
+    "minecraft:blue_ice",
+    "minecraft:mud_bricks"
+  ]
+}

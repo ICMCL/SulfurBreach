@@ -1,0 +1,5 @@
+# 发放队色战袍、+25% 移速疾风战靴与唯一一把无突进破壁长矛
+$item replace entity @s armor.chest with minecraft:leather_chestplate[custom_data={sb_kit:1b},item_name={text:"$(name)守城战袍",color:"$(color)",italic:false},dyed_color=$(c),unbreakable={},enchantments={"sb:pvp_guard":1},enchantment_glint_override=false,tooltip_display={hidden_components:["minecraft:enchantments","minecraft:dyed_color","minecraft:unbreakable","minecraft:attribute_modifiers"]}]
+$item replace entity @s armor.feet with minecraft:leather_boots[custom_data={sb_kit:1b},item_name={text:"$(name)疾风战靴 [+25% 移速]",color:"$(color)",bold:true,italic:false},lore=[{text:"提供横向扑救与进出共享中立区的机动加成",color:"gray",italic:false}],dyed_color=$(c),unbreakable={},enchantments={"sb:pvp_guard":1},enchantment_glint_override=false,attribute_modifiers=[{type:"minecraft:movement_speed",id:"sb:speed_boots",amount:0.25,operation:"add_multiplied_total",slot:"feet"}],tooltip_display={hidden_components:["minecraft:enchantments","minecraft:dyed_color","minecraft:unbreakable"]}]
+
+function sb:player/refill_spear
