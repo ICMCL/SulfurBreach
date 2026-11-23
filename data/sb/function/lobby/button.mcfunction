@@ -1,8 +1,8 @@
 execute if score #btn_cd sb_var matches 1.. run return 0
 scoreboard players set #btn_cd sb_var 25
-setblock -3 70 -20 stone_button[face=wall,facing=south,powered=false]
+setblock 0 70 -16 stone_button[face=floor,facing=south,powered=false]
 
-execute if score #state sb_var matches 1..2 run return run tellraw @p[x=-7,y=68,z=-21,dx=10,dy=5,dz=7] [{text:"[硫方破壁] ",color:"gold"},{text:"下方露天海岸赛场正在激战中！走到看台前排竹木步道即可无遮挡俯瞰全场。",color:"aqua"}]
+execute if score #state sb_var matches 1..2 run return run tellraw @p[x=-5,y=68,z=-19,dx=10,dy=5,dz=7] [{text:"[硫方破壁] ",color:"gold"},{text:"下方露天海岸赛场正在激战中！走到看台前排竹木步道即可无遮挡俯瞰全场。",color:"aqua"}]
 
 scoreboard players set #r_cnt sb_var 0
 scoreboard players set #b_cnt sb_var 0

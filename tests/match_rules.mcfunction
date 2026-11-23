@@ -10,9 +10,10 @@ execute unless block -13 65 0 red_concrete run scoreboard players add #errors sb
 execute unless block 13 65 0 blue_concrete run scoreboard players add #errors sb_var 1
 execute unless block -14 64 0 prismarine_bricks run scoreboard players add #errors sb_var 1
 execute unless block 14 64 0 prismarine_bricks run scoreboard players add #errors sb_var 1
-execute unless block -3 70 -21 emerald_block run scoreboard players add #errors sb_var 1
-execute unless block -3 70 -20 stone_button run scoreboard players add #errors sb_var 1
-execute unless block 3 69 -20 lectern run scoreboard players add #errors sb_var 1
+execute unless block 0 69 -16 emerald_block run scoreboard players add #errors sb_var 1
+execute unless block 0 70 -16 stone_button run scoreboard players add #errors sb_var 1
+execute unless block 0 70 -15 lectern[facing=north] run scoreboard players add #errors sb_var 1
+execute unless block 0 69 -14 air run scoreboard players add #errors sb_var 1
 execute unless block -9 68 -15 red_concrete run scoreboard players add #errors sb_var 1
 execute unless block 9 68 -15 blue_concrete run scoreboard players add #errors sb_var 1
 execute unless block 0 56 0 terracotta run scoreboard players add #errors sb_var 1
@@ -25,7 +26,7 @@ execute unless data entity @n[type=text_display,tag=sb_cfg_board] {billboard:"fi
 execute unless score #r_hp sb_var matches 38 run scoreboard players add #errors sb_var 1
 execute unless score #b_hp sb_var matches 38 run scoreboard players add #errors sb_var 1
 
-# 2. Verify all 8 lectern config keys & packed trigger round-trip (including unattended recall duration / disable!)
+# 2. Verify all 9 lectern config keys & packed trigger round-trip (including 3 court depth tiers + recall duration / disable!)
 data modify storage sb_test:menu a set from storage sb:dlg rules.inputs[0].key
 data modify storage sb_test:menu b set from storage sb:dlg rules.inputs[1].key
 data modify storage sb_test:menu c set from storage sb:dlg rules.inputs[2].key
@@ -34,11 +35,12 @@ data modify storage sb_test:menu e set from storage sb:dlg rules.inputs[4].key
 data modify storage sb_test:menu f set from storage sb:dlg rules.inputs[5].key
 data modify storage sb_test:menu g set from storage sb:dlg rules.inputs[6].key
 data modify storage sb_test:menu h set from storage sb:dlg rules.inputs[7].key
-execute unless data storage sb_test:menu {a:"du",b:"ba",c:"hp",d:"sp",e:"rc",f:"sh",g:"la",h:"mu"} run scoreboard players add #errors sb_var 1
-execute if data storage sb:dlg rules.inputs[8] run scoreboard players add #errors sb_var 1
+data modify storage sb_test:menu i set from storage sb:dlg rules.inputs[8].key
+execute unless data storage sb_test:menu {a:"du",b:"ba",c:"hp",d:"sp",e:"rc",f:"dp",g:"sh",h:"la",i:"mu"} run scoreboard players add #errors sb_var 1
+execute if data storage sb:dlg rules.inputs[9] run scoreboard players add #errors sb_var 1
 
 summon armor_stand 0 65 0 {Tags:["sb_test_host"],NoGravity:1b}
-scoreboard players set @e[tag=sb_test_host] sb_set 122222011
+scoreboard players set @e[tag=sb_test_host] sb_set 1222222011
 execute as @e[tag=sb_test_host] run function sb:cfg/apply_rules
 execute unless score #cfg_dur sb_var matches 180 run scoreboard players add #errors sb_var 1
 execute unless score #cfg_balls sb_var matches 3 run scoreboard players add #errors sb_var 1
@@ -47,16 +49,46 @@ execute unless score #wall_max_hp sb_var matches 57 run scoreboard players add #
 execute unless score #speed_pct sb_var matches 125 run scoreboard players add #errors sb_var 1
 execute unless score #cfg_recall_sec sb_var matches 8 run scoreboard players add #errors sb_var 1
 execute unless score #cfg_recall_ticks sb_var matches 160 run scoreboard players add #errors sb_var 1
+execute unless score #o_depth sb_var matches 2 run scoreboard players add #errors sb_var 1
+execute unless score #cfg_wall_x sb_var matches 19 run scoreboard players add #errors sb_var 1
+execute unless score #cfg_base_x sb_var matches 20 run scoreboard players add #errors sb_var 1
+execute unless score #cfg_court_len sb_var matches 41 run scoreboard players add #errors sb_var 1
+execute unless score #r_wall_x sb_var matches -19 run scoreboard players add #errors sb_var 1
+execute unless score #b_wall_x sb_var matches 19 run scoreboard players add #errors sb_var 1
+execute unless block -19 65 0 red_concrete run scoreboard players add #errors sb_var 1
+execute unless block 19 65 0 blue_concrete run scoreboard players add #errors sb_var 1
+execute unless block -20 64 0 prismarine_bricks run scoreboard players add #errors sb_var 1
+execute unless block 20 64 0 prismarine_bricks run scoreboard players add #errors sb_var 1
+execute unless block -21 65 0 cut_sandstone run scoreboard players add #errors sb_var 1
+execute unless block 21 65 0 cut_sandstone run scoreboard players add #errors sb_var 1
+execute unless block -13 65 0 air run scoreboard players add #errors sb_var 1
+execute unless block 13 65 0 air run scoreboard players add #errors sb_var 1
 execute unless score #o_shrink sb_var matches 0 run scoreboard players add #errors sb_var 1
 execute unless score #o_layout sb_var matches 1 run scoreboard players add #errors sb_var 1
 execute unless score #o_mutant sb_var matches 1 run scoreboard players add #errors sb_var 1
-scoreboard players set @e[tag=sb_test_host] sb_set 111113000
+
+scoreboard players set @e[tag=sb_test_host] sb_set 1111131000
 execute as @e[tag=sb_test_host] run function sb:cfg/apply_rules
 execute unless score #cfg_recall_sec sb_var matches 0 run scoreboard players add #errors sb_var 1
 execute unless score #cfg_recall_ticks sb_var matches 0 run scoreboard players add #errors sb_var 1
-execute unless data storage sb:cfg {txt:{recall:"关闭(不回中)"}} run scoreboard players add #errors sb_var 1
+execute unless score #o_depth sb_var matches 1 run scoreboard players add #errors sb_var 1
+execute unless score #cfg_wall_x sb_var matches 16 run scoreboard players add #errors sb_var 1
+execute unless score #cfg_court_len sb_var matches 35 run scoreboard players add #errors sb_var 1
+execute unless score #r_wall_x sb_var matches -16 run scoreboard players add #errors sb_var 1
+execute unless score #b_wall_x sb_var matches 16 run scoreboard players add #errors sb_var 1
+execute unless block -16 65 0 red_concrete run scoreboard players add #errors sb_var 1
+execute unless block 16 65 0 blue_concrete run scoreboard players add #errors sb_var 1
+execute unless block -17 64 0 prismarine_bricks run scoreboard players add #errors sb_var 1
+execute unless block 17 64 0 prismarine_bricks run scoreboard players add #errors sb_var 1
+execute unless block -18 65 0 cut_sandstone run scoreboard players add #errors sb_var 1
+execute unless block 18 65 0 cut_sandstone run scoreboard players add #errors sb_var 1
+execute unless block -19 66 0 smooth_sandstone run scoreboard players add #errors sb_var 1
+execute unless block 19 66 0 smooth_sandstone run scoreboard players add #errors sb_var 1
+execute unless data storage sb:cfg {txt:{recall:"关闭(不回中)",depth:"加长(+3/侧·35×21)"}} run scoreboard players add #errors sb_var 1
 kill @e[tag=sb_test_host]
 function sb:cfg/defaults
+execute unless score #o_depth sb_var matches 0 run scoreboard players add #errors sb_var 1
+execute unless score #cfg_wall_x sb_var matches 13 run scoreboard players add #errors sb_var 1
 execute unless score #cfg_dur sb_var matches 120 run scoreboard players add #errors sb_var 1
 execute unless score #cfg_recall_ticks sb_var matches 60 run scoreboard players add #errors sb_var 1
 execute unless score #wall_max_hp sb_var matches 38 run scoreboard players add #errors sb_var 1
@@ -274,6 +306,26 @@ tp @e[tag=sb_sd_ball] 12.49 65.05 0.5
 execute as @e[tag=sb_sd_ball] at @s run function sb:cube/step
 execute unless score #state sb_var matches 0 run scoreboard players add #errors sb_var 1
 execute unless data storage sb:game {result:{color:"red"}} run scoreboard players add #errors sb_var 1
+
+# 8. Test extended depth tiers (+3 -> +-16 walls, +6 -> +-19 walls) wall hit & Dual-Wall Push!
+scoreboard players set #o_depth sb_var 2
+function sb:arena/reset_round
+scoreboard players set #state sb_var 2
+scoreboard players set #solo_mode sb_var 1
+function sb:cube/spawn_one
+tag @e[type=sulfur_cube,tag=sb_ball,limit=1] add sb_deep_ball
+execute as @e[tag=sb_deep_ball] run function sb:cube/set_state_iron
+tp @e[tag=sb_deep_ball] 18.49 65.05 0.5
+execute as @e[tag=sb_deep_ball] at @s run function sb:cube/step
+execute unless score #b_hp sb_var matches 37 run scoreboard players add #errors sb_var 1
+execute unless block 19 65 0 blue_glazed_terracotta run scoreboard players add #errors sb_var 1
+function sb:arena/push_step
+execute unless score #r_wall_x sb_var matches -18 run scoreboard players add #errors sb_var 1
+execute unless score #b_wall_x sb_var matches 18 run scoreboard players add #errors sb_var 1
+execute unless block 18 65 0 blue_glazed_terracotta run scoreboard players add #errors sb_var 1
+function sb:game/stop
+function sb:cfg/defaults
+function sb:arena/reset_round
 
 execute if score #errors sb_var matches 0 run say SB_RULES_OK
 execute unless score #errors sb_var matches 0 run say SB_RULES_FAILED

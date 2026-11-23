@@ -272,6 +272,35 @@ public class BreachMechanicsTest {
                 && restoredBlue.is(Items.GOLD_INGOT) && restoredBlue.getCount() == 3,
             "original inventories were not independently restored");
 
+        // 9. Verify +3 (35x21) and +6 (41x21) depth tiers: player half-court spawns & extended back-wall movement bounds!
+        command(p, "scoreboard players set #o_depth sb_var 1");
+        command(p, "function sb:game/start");
+        h.assertTrue(Math.abs(p.getX() + 9.5) < 0.01 && Math.abs(pBlue.getX() - 10.5) < 0.01,
+            "Tier 1 (+3/side) did not spawn Red at -9.5 and Blue at +10.5: red=" + p.getX() + ", blue=" + pBlue.getX());
+        command(p, "scoreboard players set #state sb_var 2");
+        p.snapTo(-14.5, 65.0, 0.5, -90, 0);
+        command(p, "function sb:player/alive_step");
+        h.assertTrue(Math.abs(p.getX() + 14.5) < 0.01, "Tier 1 (+3/side) wrongly clamped Red before -16 wall: x=" + p.getX());
+        pBlue.snapTo(15.5, 65.0, 0.5, 90, 0);
+        command(pBlue, "function sb:player/alive_step");
+        h.assertTrue(Math.abs(pBlue.getX() - 15.5) < 0.01, "Tier 1 (+3/side) wrongly clamped Blue before +16 wall: x=" + pBlue.getX());
+        command(p, "function sb:game/stop");
+
+        command(p, "scoreboard players set #o_depth sb_var 2");
+        command(p, "function sb:game/start");
+        h.assertTrue(Math.abs(p.getX() + 11.5) < 0.01 && Math.abs(pBlue.getX() - 12.5) < 0.01,
+            "Tier 2 (+6/side) did not spawn Red at -11.5 and Blue at +12.5: red=" + p.getX() + ", blue=" + pBlue.getX());
+        command(p, "scoreboard players set #state sb_var 2");
+        p.snapTo(-17.5, 65.0, 0.5, -90, 0);
+        command(p, "function sb:player/alive_step");
+        h.assertTrue(Math.abs(p.getX() + 17.5) < 0.01, "Tier 2 (+6/side) wrongly clamped Red before -19 wall: x=" + p.getX());
+        pBlue.snapTo(18.5, 65.0, 0.5, 90, 0);
+        command(pBlue, "function sb:player/alive_step");
+        h.assertTrue(Math.abs(pBlue.getX() - 18.5) < 0.01, "Tier 2 (+6/side) wrongly clamped Blue before +19 wall: x=" + pBlue.getX());
+        command(p, "function sb:game/stop");
+        command(p, "function sb:cfg/defaults");
+        command(p, "function sb:arena/reset_round");
+
         System.out.println("SB_PLAYER_OK");
         h.succeed();
     }

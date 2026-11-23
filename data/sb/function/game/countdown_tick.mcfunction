@@ -1,5 +1,4 @@
-execute as @a[tag=sb_alive,scores={sb_team=1}] run tp @s -7.5 65.0 0.5 -90 0
-execute as @a[tag=sb_alive,scores={sb_team=2}] run tp @s 8.5 65.0 0.5 90 0
+execute as @a[tag=sb_alive] run function sb:player/tp_spawn
 
 execute if score #phase_tmr sb_var matches 60 run title @a[tag=sb_ingame] times 0 25 5
 execute if score #phase_tmr sb_var matches 60 run title @a[tag=sb_ingame] title {text:"3",color:"yellow",bold:true}

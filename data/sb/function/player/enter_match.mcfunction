@@ -19,8 +19,7 @@ scoreboard players set @s sb_charge_dur 0
 scoreboard players set @s sb_bump_cd 0
 scoreboard players set @s sb_warn_cd 0
 
-execute if score @s sb_team matches 1 run tp @s -7.5 65.0 0.5 -90 0
-execute if score @s sb_team matches 2 run tp @s 8.5 65.0 0.5 90 0
+function sb:player/tp_spawn
 execute store result score @s sb_px run data get entity @s Pos[0] 1000
 execute store result score @s sb_pz run data get entity @s Pos[2] 1000
 scoreboard players set @s sb_vx 0

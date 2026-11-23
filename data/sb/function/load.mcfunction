@@ -52,6 +52,7 @@ execute unless score #o_balls sb_var matches 0..2 run scoreboard players set #o_
 execute unless score #o_wall_hp sb_var matches 0..2 run scoreboard players set #o_wall_hp sb_var 1
 execute unless score #o_speed sb_var matches 0..2 run scoreboard players set #o_speed sb_var 1
 execute unless score #o_recall sb_var matches 0..3 run scoreboard players set #o_recall sb_var 0
+execute unless score #o_depth sb_var matches 0..2 run scoreboard players set #o_depth sb_var 0
 execute unless score #o_shrink sb_var matches 0..1 run scoreboard players set #o_shrink sb_var 0
 execute unless score #o_layout sb_var matches 0..1 run scoreboard players set #o_layout sb_var 0
 execute unless score #o_mutant sb_var matches 0..1 run scoreboard players set #o_mutant sb_var 0

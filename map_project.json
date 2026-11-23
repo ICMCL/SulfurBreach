@@ -1,11 +1,11 @@
 {
   "slug": "sulfur-breach",
   "namespace": "sb",
-  "title": "硫方破壁 · 晴空海岸竞技岛",
+  "title": "硫方破壁",
   "description": "双队分边守墙 × 5 格共享中立区争球 × 长矛物理弹射破城对抗（Minecraft Java 26.3）",
   "biome": "minecraft:warm_ocean",
   "spawn": {
-    "pos": [0, 70, -15],
+    "pos": [0, 70, -17],
     "yaw": 0.0,
     "pitch": 18.0
   },
@@ -13,11 +13,11 @@
   "preview_shots": [
     {
       "file": "preview_overview.png",
-      "cam": [-36.0, 95.0, 33.0],
-      "look_at": [0.0, 66.0, -3.0],
-      "fov": 45.0,
-      "title": "硫方破壁 · 晴空海岸露天竞技岛（全景鸟瞰）",
-      "subtitle": "直接读取 26.3 存档 .mca 区块渲染 · 浮空珊瑚礁岛 · 四角椰林 · 东西守城门楼"
+      "cam": [-52.0, 108.0, 46.0],
+      "look_at": [0.0, 65.5, -2.5],
+      "fov": 46.0,
+      "title": "硫方破壁",
+      "subtitle": "直接读取 26.3 存档 .mca 区块渲染 · 支持 29/35/41 三档纵深伸缩"
     },
     {
       "file": "preview_court.png",
