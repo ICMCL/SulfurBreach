@@ -246,6 +246,23 @@ public class BreachMechanicsTest {
         pBlue.releaseUsingItem();
         repair.discard();
 
+        // Off-axis hopped diagonal ball is parried even with a cooldown ball closer on the ray
+        var cdBall = spawnBall(p, "sb_cd_ball", "4.8 65.05 0.5");
+        command(p, "execute as @e[tag=sb_cd_ball] run function sb:cube/set_state_iron");
+        command(p, "scoreboard players set @e[tag=sb_cd_ball] sb_hit_cd 4");
+        var diagBall = spawnBall(p, "sb_diag_ball", "3.8 65.4 1.4");
+        command(p, "execute as @e[tag=sb_diag_ball] run function sb:cube/set_state_iron");
+        diagBall.setDeltaMovement(0.50, 0, -0.50);
+        pBlue.snapTo(6.0, 65.0, 0.5, 90, 0);
+        pBlue.setYHeadRot(90);
+        blueSpear.use(pBlue.level(), pBlue, InteractionHand.MAIN_HAND);
+        pBlue.doTick();
+        h.assertTrue(score(diagBall, "sb_state") == 2 && diagBall.getDeltaMovement().x < -1.0,
+            "Off-axis diagonal parry failed or was blocked by cooldown ball");
+        pBlue.releaseUsingItem();
+        cdBall.discard();
+        diagBall.discard();
+
         // 7. Verify anti-body-block preserves cube horizontal velocity while bumping player
         var fast = spawnBall(p, "sb_fast_ball", "-5.0 65.05 0.5");
         command(p, "execute as @e[tag=sb_fast_ball] run function sb:cube/set_state_iron");
