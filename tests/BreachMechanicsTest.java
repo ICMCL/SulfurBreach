@@ -297,6 +297,21 @@ public class BreachMechanicsTest {
         pBlue.snapTo(18.5, 65.0, 0.5, 90, 0);
         command(pBlue, "function sb:player/alive_step");
         h.assertTrue(Math.abs(pBlue.getX() - 18.5) < 0.01, "Tier 2 (+6/side) wrongly clamped Blue before +19 wall: x=" + pBlue.getX());
+
+        // 10. Players can move freely through their own empty wall openings & baseline trench; midline clamp preserves Z
+        p.snapTo(-19.5, 65.0, 0.4321, -90, 0);
+        command(p, "function sb:player/alive_step");
+        h.assertTrue(Math.abs(p.getX() + 19.5) < 0.001 && Math.abs(p.getZ() - 0.4321) < 0.00001,
+            "Red player was blocked inside own empty wall/trench: x=" + p.getX());
+        pBlue.snapTo(20.5, 65.0, -0.6543, 90, 0);
+        command(pBlue, "function sb:player/alive_step");
+        h.assertTrue(Math.abs(pBlue.getX() - 20.5) < 0.001 && Math.abs(pBlue.getZ() + 0.6543) < 0.00001,
+            "Blue player was blocked inside own empty wall/trench: x=" + pBlue.getX());
+        p.snapTo(3.2, 65.0, 0.4321, -90, 0);
+        command(p, "function sb:player/alive_step");
+        h.assertTrue(Math.abs(p.getX() - 2.66) < 0.001 && Math.abs(p.getZ() - 0.4321) < 0.00001,
+            "Midline clamp failed to preserve Z: x=" + p.getX() + ", z=" + p.getZ());
+
         command(p, "function sb:game/stop");
         command(p, "function sb:cfg/defaults");
         command(p, "function sb:arena/reset_round");

@@ -12,7 +12,7 @@ scoreboard players operation @s sb_vz -= @s sb_pz
 scoreboard players operation @s sb_px = #nx sb_var
 scoreboard players operation @s sb_pz = #nz sb_var
 
-# 共享 5 格中立区与守护墙前界软约束（红蓝皆可进入 x ∈ [-2..+2]，不可越入对方专属半场或钻入墙洞）
+# 共享 5 格中立区软边界约束（红蓝皆可进入 x ∈ [-2..+2]，仅阻止越入对方专属半场）
 function sb:player/zone_clamp
 
 # 右键架矛松手归零
