@@ -20,10 +20,7 @@ scoreboard players operation #r_wall_x sb_var = #cfg_wall_x sb_var
 scoreboard players operation #r_wall_x sb_var *= #-1 sb_const
 scoreboard players operation #b_wall_x sb_var = #cfg_wall_x sb_var
 scoreboard players operation #b_base_x sb_var = #cfg_base_x sb_var
-scoreboard players operation #r_wall_xm sb_var = #r_wall_x sb_var
-scoreboard players operation #r_wall_xm sb_var *= #1000 sb_const
-scoreboard players operation #b_wall_xm sb_var = #b_wall_x sb_var
-scoreboard players operation #b_wall_xm sb_var *= #1000 sb_const
+function sb:arena/wall_bounds
 scoreboard players set #spawn_cd sb_var 10
 scoreboard players set #spawn_seq sb_var 0
 scoreboard players set #sudden_death sb_var 0

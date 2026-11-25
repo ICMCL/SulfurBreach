@@ -17,14 +17,14 @@ execute if score @s sb_state matches 1..2 if score @s sb_hit_cd matches 0 run fu
 # 若刚从空旷背板反弹回场，确保斜向出洞时不卡入相邻实心墙背面
 execute if score @s sb_back_cd matches 1.. run function sb:cube/back_exit_guard
 
-# 检测守护墙实心撞击与背板局部半径震波（若触发破墙销毁则立即返回）
-function sb:cube/wall_check
+# 先采样护栏校正后的坐标；保留上一刻 sb_vx，供墙边判断球是否刚反弹。
+execute store result score @s sb_px run data get entity @s Pos[0] 1000
+execute store result score @s sb_pz run data get entity @s Pos[2] 1000
+execute if score @s sb_back_cd matches 0 run function sb:cube/wall_check
 execute unless entity @s run return 0
 execute unless score #state sb_var matches 2 run return 0
 
-# 更新当前坐标与速度缓存
-execute store result score @s sb_px run data get entity @s Pos[0] 1000
-execute store result score @s sb_pz run data get entity @s Pos[2] 1000
+# 撞墙可能改变动量，速度必须在结算后采样。
 execute store result score @s sb_vx run data get entity @s Motion[0] 1000
 execute store result score @s sb_vz run data get entity @s Motion[2] 1000
 

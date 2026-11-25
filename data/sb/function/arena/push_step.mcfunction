@@ -18,16 +18,9 @@ scoreboard players add #r_wall_x sb_var 1
 scoreboard players remove #b_wall_x sb_var 1
 scoreboard players remove #b_base_x sb_var 1
 
-scoreboard players operation #r_wall_xm sb_var = #r_wall_x sb_var
-scoreboard players operation #r_wall_xm sb_var *= #1000 sb_const
-scoreboard players operation #b_wall_xm sb_var = #b_wall_x sb_var
-scoreboard players operation #b_wall_xm sb_var *= #1000 sb_const
+function sb:arena/wall_bounds
 
 # 3. 先将贴近新守护墙前侧的玩家与场内硫方怪平滑内推，防卡墙窒息与防误吞入底线
-scoreboard players operation #clamp_min_x sb_var = #r_wall_xm sb_var
-scoreboard players add #clamp_min_x sb_var 1650
-scoreboard players operation #clamp_max_x sb_var = #b_wall_xm sb_var
-scoreboard players remove #clamp_max_x sb_var 650
 execute as @a[tag=sb_alive] at @s run function sb:arena/push_clamp
 execute as @e[type=sulfur_cube,tag=sb_ball] at @s run function sb:arena/push_clamp
 

@@ -97,6 +97,9 @@ execute unless score #wall_max_hp sb_var matches 38 run scoreboard players add #
 function sb:arena/reset_round
 scoreboard players set #state sb_var 2
 scoreboard players set #solo_mode sb_var 1
+scoreboard players set #cur_balls sb_var 7
+function sb:cube/spawner_step
+execute unless score #cur_balls sb_var matches 0 run scoreboard players add #errors sb_var 1
 function sb:cube/spawn_one
 execute unless entity @e[type=sulfur_cube,tag=sb_ball,scores={sb_state=0},limit=1] run scoreboard players add #errors sb_var 1
 tag @e[type=sulfur_cube,tag=sb_ball,limit=1] add sb_tball
@@ -323,6 +326,34 @@ function sb:arena/push_step
 execute unless score #r_wall_x sb_var matches -18 run scoreboard players add #errors sb_var 1
 execute unless score #b_wall_x sb_var matches 18 run scoreboard players add #errors sb_var 1
 execute unless block 18 65 0 blue_glazed_terracotta run scoreboard players add #errors sb_var 1
+
+# Just inside the new blue front there is no hit; the exact front is inclusive.
+execute as @e[tag=sb_deep_ball] run function sb:cube/set_state_iron
+tp @e[tag=sb_deep_ball] 17.34 65.05 0.5
+execute as @e[tag=sb_deep_ball] at @s run function sb:cube/step
+execute unless score #b_hp sb_var matches 37 run scoreboard players add #errors sb_var 1
+tp @e[tag=sb_deep_ball] 17.35 65.05 0.5
+execute as @e[tag=sb_deep_ball] at @s run function sb:cube/step
+execute unless score #b_hp sb_var matches 36 run scoreboard players add #errors sb_var 1
+execute if entity @e[tag=sb_deep_ball] run scoreboard players add #errors sb_var 1
+
+# A ball already inside a bare blue trench rebounds west before the next push,
+# even if it was still moving east; use the larger of live and cached speeds.
+scoreboard players set @e[type=marker,tag=sb_wblue,scores={sb_col=-2..2}] sb_hp 0
+execute as @e[type=marker,tag=sb_wblue,scores={sb_col=-2..2}] at @s run function sb:arena/col_render
+function sb:cube/spawn_one
+tag @n[type=sulfur_cube,tag=sb_ball] add sb_trench_ball
+execute as @e[tag=sb_trench_ball] run function sb:cube/set_state_iron
+tp @e[tag=sb_trench_ball] 18.6 65.05 0.5
+scoreboard players set @e[tag=sb_trench_ball] sb_vx 500
+execute as @e[tag=sb_trench_ball] run data modify entity @s Motion[0] set value 1.0d
+execute as @e[tag=sb_trench_ball] at @s run function sb:cube/settle_trench
+execute unless entity @e[tag=sb_trench_ball,scores={sb_vx=-950,sb_back_cd=8}] run scoreboard players add #errors sb_var 1
+
+function sb:cube/spawn_one
+scoreboard players set #cur_balls sb_var 0
+function sb:cube/spawner_step
+execute unless score #cur_balls sb_var matches 2 run scoreboard players add #errors sb_var 1
 function sb:game/stop
 function sb:cfg/defaults
 function sb:arena/reset_round

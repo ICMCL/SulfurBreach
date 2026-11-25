@@ -32,6 +32,7 @@ scoreboard objectives add sb_left minecraft.custom:minecraft.leave_game
 scoreboard objectives add sb_side dummy {text:"🛡 硫方破壁 🛡",color:"gold",bold:true}
 
 scoreboard players set #-1 sb_const -1
+scoreboard players set #1 sb_const 1
 scoreboard players set #2 sb_const 2
 scoreboard players set #3 sb_const 3
 scoreboard players set #4 sb_const 4
@@ -86,8 +87,8 @@ team modify sb_repair collisionRule never
 team modify red prefix {text:"[红] ",color:"red"}
 team modify blue prefix {text:"[蓝] ",color:"blue"}
 
-data modify storage sb:t red set value {team:"red",id:1,name:"红队",color:"red",c:16724787}
-data modify storage sb:t blue set value {team:"blue",id:2,name:"蓝队",color:"blue",c:3949738}
+data modify storage sb:t red set value {team:"red",id:1,name:"红队",color:"red",c:16724787,side:"红",incoming:"..-50",deflected:"-30..",bounce:500,sign:1}
+data modify storage sb:t blue set value {team:"blue",id:2,name:"蓝队",color:"blue",c:3949738,side:"蓝",incoming:"50..",deflected:"..30",bounce:-500,sign:-1}
 
 function sb:cfg/templates
 

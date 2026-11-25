@@ -2,11 +2,11 @@
 execute store result score #ex sb_var run data get entity @s Pos[0] 1000
 scoreboard players set #moved sb_var 0
 
-execute if score #ex sb_var < #clamp_min_x sb_var run scoreboard players set #moved sb_var 1
-execute if score #ex sb_var < #clamp_min_x sb_var run scoreboard players operation #ex sb_var = #clamp_min_x sb_var
+execute if score #ex sb_var < #hit_r sb_var run scoreboard players set #moved sb_var 1
+execute if score #ex sb_var < #hit_r sb_var run scoreboard players operation #ex sb_var = #hit_r sb_var
 
-execute if score #ex sb_var > #clamp_max_x sb_var run scoreboard players set #moved sb_var 2
-execute if score #ex sb_var > #clamp_max_x sb_var run scoreboard players operation #ex sb_var = #clamp_max_x sb_var
+execute if score #ex sb_var > #hit_b sb_var run scoreboard players set #moved sb_var 2
+execute if score #ex sb_var > #hit_b sb_var run scoreboard players operation #ex sb_var = #hit_b sb_var
 
 execute if score #moved sb_var matches 1.. if entity @s[type=player] run scoreboard players operation @s sb_px = #ex sb_var
 execute if score #moved sb_var matches 1.. store result storage sb:tmp tp.x double 0.001 run scoreboard players get #ex sb_var
